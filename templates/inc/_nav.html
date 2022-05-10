@@ -1,0 +1,43 @@
+{% load shop_tags %}
+<!-- Navigation-->
+       <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" href="{% url 'home' %}">Головна</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="">Тест</a></li>
+
+
+                        {% get_list_categories as categories %}
+                        {% for item in categories %}
+
+                        <li class="nav-item"><a class="nav-link" href="{% url 'category' item.id %}">{{ item.name }}</a></li>
+
+                        {% endfor %}
+
+                    </ul>
+                    <form class="d-flex">
+
+                        <a  href="{% url 'cart_detail' %}" class="btn btn-outline-dark"   type="submit">
+                            <i class="bi-cart-fill me-1" ></i>
+                            Корзина
+                            <span class="badge bg-dark text-white ms-1 rounded-pill">{{ cart.get_total_quantity }}</span>
+                        </a>
+
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-2 ms-lg-1">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Панель Андміна</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="/admin">Адмін</a></li>
+                                <li><a class="dropdown-item" href="/admin/shop/product/add/">Добавити товар</a></li>
+                                <li><a class="dropdown-item" href="/admin/shop/category/add/">Добавити категорію</a></li>
+                            </ul>
+                        </ul>
+
+                        </li>
+
+                    </form>
+                </div>
+            </div>
+        </nav>
