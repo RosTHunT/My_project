@@ -2,33 +2,65 @@
 
 {%  block content %}
       <!-- Section-->
-        <section class="py-5">
-            <div class="container px-4 px-lg-5 mt-5">
-                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-3 justify-content-center">
+<!--        <section class="py-5">-->
+<!--            <div class="container px-4 px-lg-5 mt-5">-->
+<!--                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-3 justify-content-center">-->
 
-{% for item in categories %}
+<!--{% for item in categories %}-->
 
 
-                    <div class="col mb-5">
-                        <div class="card h-100">
-                            <!-- Product image-->
-                            <img class="card-img-top mx-auto d-block" src="{{ item.photo.url }}" alt="..." style="width: 200px;
-height: 200px;" />
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder">{{item.name}}</h5>
-                                    <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{% url 'category' item.id %}">Перейти</a></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+<!--                    <div class="col mb-5">-->
+<!--                        <div class="card h-100">-->
+<!--                            &lt;!&ndash; Product image&ndash;&gt;-->
+<!--                            <img class="card-img-top mx-auto d-block" src="{{ item.photo.url }}" alt="..." style="width: 200px;-->
+<!--height: 200px;" />-->
+<!--                            &lt;!&ndash; Product details&ndash;&gt;-->
+<!--                            <div class="card-body p-4">-->
+<!--                                <div class="text-center">-->
+<!--                                    &lt;!&ndash; Product name&ndash;&gt;-->
+<!--                                    <h5 class="fw-bolder">{{item.name}}</h5>-->
+<!--                                    <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{% url 'category' item.id %}">Перейти</a></div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
 
-{% endfor %}
+<!--{% endfor %}-->
 
-                     </div>
+<!--                     </div>-->
+<!--            </div>-->
+<!--        </section>-->
+
+        <section class="main-content">
+    	<div class="container px-4 px-lg-5 mt-5">
+    		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-3 justify-content-center">
+                {% for item in categories %}
+    			<div class="col-lg-4 col-sm-6 mb-3">
+    				<div class="product-cart">
+    					<div class="product-thumb">
+    						<a href="{% url 'category' item.id %}"><img src="{{ item.photo.url }}"></a>
+    					</div>
+    					<div class="product-details">
+    						<h4><a href="{% url 'category' item.id %}">{{item.name}}</a></h4>
+    						<p>Cards support a wide variety of content, including images, text, list groups, links, and more. Below are examples of what’s supported. support a wide variety of content, including images, text, list
+    						</p>
+<!--    						<div class="product-bottom-details d-flex justify-content-between">-->
+<!--    							<div class="product-price">-->
+<!--    								<small>$230.00</small> $130.00-->
+<!--    							</div>-->
+<!--    							<div class="product-links">-->
+<!--    								<a href="#">Корзина</a>-->
+<!--    								<a href="#">Закладка</a>-->
+<!--    							</div>-->
+<!--                            </div>-->
+    					</div>
+
+
+    				</div>
+    			</div>
+                {% endfor %}
             </div>
+        </div>
         </section>
 
 {% endblock %}

@@ -2,41 +2,82 @@
 
 {%  block content %}
 <!-- Section-->
-        <section class="py-5">
-            <div class="container px-4 px-lg-5 mt-5">
-                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-3 justify-content-center">
+<!--        <section class="py-5">-->
+<!--            <div class="container px-4 px-lg-5 mt-5">-->
+<!--                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-3 justify-content-center">-->
 
 
- {% for item in product %}
-            {% if item.is_published %}
-                        <div class="col mb-5">
-                            <div class="card h-100">
-                                <!-- Product image-->
-                                <img class="card-img-top mx-auto d-block" src="{{ item.photo.url }}" alt="..." style="width: 200px;
-    height: 200px;" />
-                                <!-- Product details-->
-                                <div class="card-body p-4">
-                                    <div class="text-center">
-                                        <!-- Product name-->
-                                        <h5 class="fw-bolder">{{ item.name}}</h5>
-                                        <h6> {{ item.content }} </h6>
-                                        <!-- Product price-->
-                                        {{item.price}} грн
-                                        {% if item.in_stock %} <form action="{% url 'cart_add' item.id  %}" method="post">
+<!-- {% for item in product %}-->
+<!--            {% if item.is_published %}-->
+<!--                        <div class="col mb-5">-->
+<!--                            <div class="card h-100">-->
+<!--                                &lt;!&ndash; Product image&ndash;&gt;-->
+<!--                                <img class="card-img-top mx-auto d-block" src="{{ item.photo.url }}" alt="..." style="width: 200px;-->
+<!--    height: 200px;" />-->
+<!--                                &lt;!&ndash; Product details&ndash;&gt;-->
+<!--                                <div class="card-body p-4">-->
+<!--                                    <div class="text-center">-->
+<!--                                        &lt;!&ndash; Product name&ndash;&gt;-->
+<!--                                        <h5 class="fw-bolder">{{ item.name}}</h5>-->
+<!--                                        <h6> {{ item.content }} </h6>-->
+<!--                                        &lt;!&ndash; Product price&ndash;&gt;-->
+<!--                                        {{item.price}} грн-->
+<!--                                        {% if item.in_stock %} <form action="{% url 'cart_add' item.id  %}" method="post">-->
+<!--                                          {{ cart_product_form }}-->
+<!--                                          {%csrf_token%}-->
+<!--                                          <input type="submit" value="В корзину"></form>{% endif %}-->
+<!--                                        {{ product.description|linebreaks }}-->
+<!--                                    </div>-->
+<!--                                    <small>{% if item.in_stock %} <p class=" text-success "><em>Є в наявності</em></p>  {% else %} <p class="text-danger col-md-4"><em>Немає в наявності</em></p> {% endif %}</small>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--            {% endif %}-->
+<!-- {% endfor %}-->
+
+<!--                     </div>-->
+<!--            </div>-->
+<!--        </section>-->
+
+        <section class="main-content">
+    	<div class="container px-4 px-lg-5 mt-5">
+    		<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-3 justify-content-center">
+                {% for item in product %}
+                {% if item.is_published %}
+                <div class="col-lg-4 col-sm-6 mb-3">
+                    <div class="product-cart">
+                        <div class="product-thumb">
+                            <a href="#"><img src="{{ item.photo.url }}"></a>
+                        </div>
+                        <div class="product-details">
+                            <h4><a href="">{{ item.name}}</a></h4>
+                            <p>{{ item.content }}   </p>
+                            <div class="product-bottom-details d-flex justify-content-between">
+                                <div class="product-price">
+<!--                                    <small>$230.00</small> -->
+                                    {{item.price}} грн
+
+                                </div>
+                                <div class="product-links">
+                                    {% if item.in_stock %} <form action="{% url 'cart_add' item.id  %}" method="post">
                                           {{ cart_product_form }}
                                           {%csrf_token%}
                                           <input type="submit" value="В корзину"></form>{% endif %}
                                         {{ product.description|linebreaks }}
-                                    </div>
-                                    <small>{% if item.in_stock %} <p class=" text-success "><em>Є в наявності</em></p>  {% else %} <p class="text-danger col-md-4"><em>Немає в наявності</em></p> {% endif %}</small>
                                 </div>
                             </div>
+                             <div>
+                                    <small>{% if item.in_stock %} <p class=" text-success "><em>Є в наявності</em></p>  {% else %} <p class="text-danger col-md-4"><em>Немає в наявності</em></p> {% endif %}</small>
+                             </div>
                         </div>
-            {% endif %}
- {% endfor %}
 
-                     </div>
+
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
             </div>
+        </div>
         </section>
 
 {% endblock %}
